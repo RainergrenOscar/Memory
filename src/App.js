@@ -17,10 +17,10 @@ function App() {
 
   const shuffleCards = () => {                           //creating function that shuffling cards
     const shuffledCards = [...cardImages, ...cardImages] //using spread operator to create new array with previous cardImages array twice.
-    .sort(() => Math.random() - 0.5)                     // 
-      .map((card) => ({ ...card, id: Math.random() }))
+    .sort(() => Math.random() - 0.5)                     // using the .sort method to the array with Math.random to create different outcome everytime
+      .map((card) => ({ ...card, id: Math.random() }))   //creating a new array with the .map method with different id everytime
     
-    setCards(shuffledCards)
+    setCards(shuffledCards)                              // using the setCard useState hook, pass in the shufflecards function into setCards.
     setTurns(0)
   }
 
