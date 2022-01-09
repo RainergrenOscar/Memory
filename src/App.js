@@ -3,17 +3,20 @@ import './App.css';
 import SingleCard from './components/SingleCard';
 
 const cardImages = [ // adding all images
-  { "src": "/img/helmet-1.png" },
-  { "src": "/img/potion-1.png" },
-  { "src": "/img/ring-1.png" },
-  { "src": "/img/scroll-1.png" },
-  { "src": "/img/shield-1.png" },
-  { "src": "/img/sword-1.png" }
+  { "src": "/img/kanye-west-1.jpeg" },
+  { "src": "/img/kanye-west-2.jpeg" },
+  { "src": "/img/kanye-west-3.png" },
+  { "src": "/img/kanye-west-4.jpeg" },
+  { "src": "/img/kanye-west-5.jpeg" },
+  { "src": "/img/kanye-west-6.jpeg" },
+  
 ]
 
 function App() {
   const [cards, setCards] = useState([])                 //using useState hook
   const [turns, setTurns] = useState(0)
+  const [choiceOne, setChoiceOne] = useState(null)
+  const [choiceTwo, setChoiceTwo] = useState(null)
 
   const shuffleCards = () => {                           //creating function that shuffling cards
     const shuffledCards = [...cardImages, ...cardImages] //using spread operator to create new array with previous cardImages array twice.
@@ -24,14 +27,20 @@ function App() {
     setTurns(0)
   }
 
-  console.log(cards, turns)
+  const handleChoice = (card) => {
+    console.log(card)
+  }
   return (
     <div className="App">
-      <h1>MAGIC MEMORY</h1>
+      <h1>KANYE MEMORY</h1>
       <button onClick={shuffleCards}>Start New Game</button>
       <div className="card-grid">
-        {cards.map(card => (
-          <SingleCard key={card.id} card={card}/>
+        {cards.map(card => (                            
+          <SingleCard
+            key={card.id}
+            card={card}
+            handleChoice={handleChoice}
+          />
         ))}
       </div>
     </div>
