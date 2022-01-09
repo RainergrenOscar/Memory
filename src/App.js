@@ -1,4 +1,4 @@
-import { useState } from 'react'; //importing useState Hook
+import { useState,useEffect } from 'react'; //importing useState Hook
 import './App.css';
 import SingleCard from './components/SingleCard';
 
@@ -28,8 +28,28 @@ function App() {
   }
 
   const handleChoice = (card) => {
-    console.log(card)
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
+
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log("MATCH")
+        resetTurn()
+      } else {
+        console.log("NO MATCH")
+        resetTurn()
+      }
+    }
+  }, [choiceOne, choiceTwo])
+  
+  const resetTurn = () => {
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setTurns(prevTurns => prevTurns + 1)
+  }
+
+
   return (
     <div className="App">
       <h1>KANYE MEMORY</h1>
